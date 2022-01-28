@@ -14,7 +14,7 @@ export default function App() {
       </SafeAreaView>
       <ExpoStatusBar style="auto" />
     </>
-  );
+  ); 
 }
 
 const styles = StyleSheet.create({
