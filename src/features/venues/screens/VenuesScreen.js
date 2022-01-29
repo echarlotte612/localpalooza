@@ -1,33 +1,34 @@
 import React from "react";
 import { Searchbar } from "react-native-paper";
 import { StatusBar, StyleSheet, SafeAreaView, Text, View } from "react-native";
+import styled from 'styled-components/native';
 
-import { VenueInfo } from "../components/venue-info.component"; 
+import { VenueInfoCard } from "../components/venue-info-card.component"; 
+
+const SafeAreaContainer = styled(SafeAreaView)`
+  flex: 1;
+  ${StatusBar.currentHeight && `marginTop: ${StatusBar.currentHeight}px`};
+`;
+
+const SearchContainer = styled(View)`
+  padding: 15px;
+`;
+
+const List = styled(View)`
+  flex: 1;
+  padding: 15px;
+  border: solid grey 1px;
+  border-radius: 5px;
+  margin: 5px;
+`;
 
 export const VenuesScreen = () => (
-  <SafeAreaView style={styles.container}>
-    <View style={styles.search}>
+  <SafeAreaContainer>
+    <SearchContainer>
       <Searchbar />
-    </View>
-    <View style={styles.list}>
-        <VenueInfo />
-    </View>
-  </SafeAreaView>
+    </SearchContainer>
+    <List>
+        <VenueInfoCard />
+    </List>
+  </SafeAreaContainer>
 );
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-  },
-  search: {
-    padding: 15,
-  },
-  list: {
-    flex: 1,
-    padding: 15,
-    border: 'solid grey 1px',
-    borderRadius: 5,
-    margin: 5
-  },
-});
