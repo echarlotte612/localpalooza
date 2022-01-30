@@ -1,20 +1,32 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
 import { Card } from 'react-native-paper';
 import styled from "styled-components/native";
 
 const Title = styled(Text)`
-    padding: 16px;
-    color: hotpink
+    color: ${(props) => props.theme.colors.text.primary};
+    font-family: ${(props) => props.theme.fonts.heading};
+    text-transform: uppercase;
+`;
+
+const Info = styled(View)`
+    padding: ${(props) => props.theme.space[3]};
+`;
+
+const Address = styled(Text)`
+    font-family: ${(props) => props.theme.fonts.body};
+    color: ${(props) => props.theme.colors.text.secondary};
+    font-size: ${(props) => props.theme.fontSizes.caption};
+    text-transform: capitalize;
 `;
 
 const VenueCard = styled(Card)`
-    padding: 5px;
+    padding: ${(props) => props.theme.space[1]};
 `;
 
 const VenueCardPic = styled(Card.Cover)`
-    padding: 5px;
-    background-color: white;
+    padding: ${(props) => props.theme.space[1]};
+    background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 
 export const VenueInfoCard = ({ venue = {} }) => {
@@ -27,10 +39,14 @@ export const VenueInfoCard = ({ venue = {} }) => {
         rating = 4,
         isClosedTemporarily
     } = venue;
+
     return (
         <VenueCard elevation={3} >
-            <Title>{name}</Title> 
             <VenueCardPic source={{ uri:profilepic }} />
+            <Info>
+              <Title>{name}</Title>
+              <Address>{address}</Address> 
+            </Info>
         </VenueCard>
     )
 }
